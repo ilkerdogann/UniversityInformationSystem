@@ -15,11 +15,28 @@ namespace UniversityInformationSystem.Controllers
             foreach (var item in faculties)
             {
                 var facultyName = item.FakulteAd;
-                model.Add(new FacultyModel { FakulteAd = facultyName});
+                var facultyId = item.FakulteID;
+                model.Add(new FacultyModel { FakulteAd = facultyName, Id = facultyId });
             }
             return View(model);
         }
         public ActionResult Create()
+        {
+            var context = new Context();
+            return View();
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var context = new Context();
+            var faculty = context.Faculties.FirstOrDefault(a => a.FakulteID == id);
+            var model = new FacultyModel();
+            model.Id = faculty.FakulteID;
+            model.FakulteAd = faculty.FakulteAd;
+            return View(model);
+        }
+
+        public ActionResult Delete()
         {
             var context = new Context();
             return View();

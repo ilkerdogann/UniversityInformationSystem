@@ -1,15 +1,31 @@
 ﻿@model List<UniversityInformationSystem.Models.FacultyModel>
-
+@{
+    ViewBag.Title = "Create";
+}
 <br />
 <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-left:1000px;">
     <a href="@Url.Action("Index", "Home")" class="btn btn-info">Ekle</a>
 </div>
-@{
-    ViewBag.Title = "Create";
-}
-@foreach (var item in Model)
-{
-    <h2>@item.FakulteAd</h2>
-}
-<h2>Create</h2>
+
+<table class="table" style="width: 70%; margin-left: auto; margin-right: auto;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Fakülte Adı</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FakulteAd</td>
+                <td style="text-align: right">
+                    <a href="@Url.Action("Edit", "Faculty", new { id = item.Id})" class="btn btn-success">Güncelle</a>
+                    <a style="margin-left: 5px" href="@Url.Action("Delete", "Faculty", new { id = item.Id})" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
