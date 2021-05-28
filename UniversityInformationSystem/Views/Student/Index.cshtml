@@ -2,9 +2,15 @@
 @{
     ViewBag.Title = "Create";
 }
-@foreach (var item in Model)
-{
-    <h2>@item.Ad @item.Soyad</h2>
-}
-<h2>Create</h2>
 
+<h1>Öğrenci Sorgulama Ekranı</h1>
+<br />
+@using (Html.BeginForm("Index", "Student", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Öğrenci Numarası")
+        @Html.TextBoxFor(x => x.OgrenciID)
+        <br />
+        <button class="btn btn-info">Öğrenciyi Bul</button>
+    </div>
+}

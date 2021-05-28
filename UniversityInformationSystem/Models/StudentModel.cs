@@ -7,6 +7,7 @@ namespace UniversityInformationSystem.Models
 {
     public class StudentModel
     {
+
         public string Ad { get; set; }
         public string Soyad { get; set; }
     }
