@@ -26,5 +26,20 @@ namespace UniversityInformationSystem.Controllers
             var context = new Context();
             return View();
         }
+
+        public ActionResult Edit(int id)
+        {
+            var context = new Context();
+            var department = context.Departments.FirstOrDefault(a => a.FakulteID == id);
+            var model = new DepartmentModel();
+            model.BolumAd = department.BolumAd;
+            return View(model);
+        }
+
+        public ActionResult Delete()
+        {
+            var context = new Context();
+            return View();
+        }
     }
 }

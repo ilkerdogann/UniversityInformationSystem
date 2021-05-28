@@ -1,7 +1,17 @@
-﻿
+﻿@model UniversityInformationSystem.Models.DepartmentModel
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
+<h1>Yeni Bölüm Ekle</h1>
+<br />
+@using (Html.BeginForm("AddHeading", "Heading", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.Label("Bölüm Adı")
+        @Html.TextBoxFor(x => x.BolumAd, new { @class = "form-control" })
+        @*@Html.ValidationMessageFor(x => x.BolumAd)*@
+        <br />
+        <button class="btn btn-info">Bölümü Oluştur</button>
+    </div>
+}
