@@ -10,6 +10,7 @@ namespace UniversityInformationSystem.Entities
 
         [ForeignKey("Student")]
         public int OgrenciID { get; set; }
+        //public string DersAdi { get; set; }
         public int Yil { get; set; }
         public int Yariyil { get; set; }
         public int Vize { get; set; }
