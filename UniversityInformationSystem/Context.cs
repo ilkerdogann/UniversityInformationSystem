@@ -7,6 +7,7 @@ namespace UniversityInformationSystem
     {
         public DbSet<Department> Departments { get; set; }
         public DbSet<Faculty> Faculties { get; set; }
+        public DbSet<StudentLesson> StudentLessons { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Student> Students { get; set; }
     }

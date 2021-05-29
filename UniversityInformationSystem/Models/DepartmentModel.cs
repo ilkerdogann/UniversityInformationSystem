@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web.Mvc;
 
 namespace UniversityInformationSystem.Models
 {
     public class DepartmentModel
     {
         public string BolumAd { get; set; }
+        public string FakulteAd { get; set; }
+        public int FakulteId { get; set; }
+        public SelectList Faculties { get; set; }
     }
 }
