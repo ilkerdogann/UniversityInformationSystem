@@ -1,0 +1,17 @@
+﻿@model  List<UniversityInformationSystem.Models.LessonModel>
+
+<table class="table" style="width: 70%; margin-left: auto; margin-right: auto;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Dersin Adı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DersAdi</td>
+            </tr>
+        }
+    </tbody>
+</table>

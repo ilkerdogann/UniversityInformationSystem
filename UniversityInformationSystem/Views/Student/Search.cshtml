@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h1>Öğrenci Sorgulama Ekranı</h1>
+<br />
+
+    <div class="form-group">
+        @Html.Label("Öğrenci Numarası")
+        @Html.TextBox("ogrenciNo", "", new { id = "ogrenciNo" })
+    </div>
+
+    <div class="form-group" style="margin-top:25px;">
+        <button id="searchButton" class="btn btn-info">Öğrenciyi Bul</button>
+    </div>
+
+<div id="studentLessons"></div>
+<script>
+$(document).ready(function(){
+    $("#searchButton").click(function () {
+        debugger;
+        var data = { ogrenciNo: $("#ogrenciNo").val() }
+        $.post("@Url.Action("SearchLessons", "Student")", data, function (data, status) {
+            $("#studentLessons").html(data);
+    });
+  });
+});
+</script>
