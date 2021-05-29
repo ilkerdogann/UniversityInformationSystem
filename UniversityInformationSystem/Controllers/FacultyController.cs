@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using UniversityInformationSystem.Entities;
 using UniversityInformationSystem.Models;
 
 namespace UniversityInformationSystem.Controllers
@@ -22,8 +23,18 @@ namespace UniversityInformationSystem.Controllers
         }
         public ActionResult Create()
         {
-            var context = new Context();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(FacultyModel model)
+        {
+            var context = new Context();
+            var faculty = new Faculty();
+            faculty.FakulteAd = model.FakulteAd;
+            context.Faculties.Add(faculty);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
@@ -36,10 +47,23 @@ namespace UniversityInformationSystem.Controllers
             return View(model);
         }
 
-        public ActionResult Delete()
+        [HttpPost]
+        public ActionResult Edit(FacultyModel model)
         {
             var context = new Context();
-            return View();
+            var faculty = context.Faculties.FirstOrDefault(a => a.FakulteID == model.Id);
+            faculty.FakulteAd = model.FakulteAd;
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var context = new Context();
+            var faculty = context.Faculties.FirstOrDefault(a => a.FakulteID == id);
+            context.Faculties.Remove(faculty);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

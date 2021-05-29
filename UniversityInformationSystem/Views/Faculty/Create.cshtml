@@ -2,16 +2,12 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h1>Yeni Fakülte Ekle</h1>
-<br />
-@using (Html.BeginForm("Index", "Faculty", FormMethod.Post))
-{
-    <div class="form-group">
-        @Html.Label("Fakülte Adı")
-        @Html.TextBoxFor(x => x.FakulteAd, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.FakulteAd)
-        <br />
-        <button class="btn btn-info">Fakülteyi Oluştur</button>
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Fakülte Ekle</h1>
     </div>
+</div>
+@using (Html.BeginForm("Create", "Faculty", FormMethod.Post))
+{
+    @Html.Partial("_CreateOrEdit")
 }
