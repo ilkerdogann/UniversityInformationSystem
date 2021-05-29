@@ -6,7 +6,7 @@ namespace UniversityInformationSystem.Entities
     public class Student
     {
         [Key]
-        public int OgrenciID { get; set; }
+        public int OgrenciNo { get; set; }
         public string Ad { get; set; }
         public string Soyad { get; set; }
 
