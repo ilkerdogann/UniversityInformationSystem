@@ -1,7 +1,11 @@
-﻿
+﻿@model UniversityInformationSystem.Models.DepartmentModel
 @{
     ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
-
+<br />
+@using (Html.BeginForm("Edit", "Department", FormMethod.Post))
+{
+    @Html.Partial("_CreateOrEdit")
+}

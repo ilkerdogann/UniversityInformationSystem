@@ -1,0 +1,15 @@
+﻿@model UniversityInformationSystem.Models.DepartmentModel
+
+<div class="form-group">
+    @Html.Label("Bölüm Adı")
+    @Html.TextBoxFor(x => x.BolumAd, new { @class = "form-control" })
+    <br />
+</div>
+<div class="form-group">
+    @Html.Label("Fakülteyi Seçin")
+    @Html.DropDownListFor(x => x.FakulteId, Model.Faculties, "Seçiniz", new { @class = "form-control form-select" })
+    <br />
+</div>
+<div class="form-group">
+    <button type="submit" class="btn btn-info">Kaydet</button>
+</div>

@@ -5,13 +5,7 @@
 
 <h1>Yeni Bölüm Ekle</h1>
 <br />
-@using (Html.BeginForm("AddHeading", "Heading", FormMethod.Post))
+@using (Html.BeginForm("Create", "Department", FormMethod.Post))
 {
-    <div class="form-group">
-        @Html.Label("Bölüm Adı")
-        @Html.TextBoxFor(x => x.BolumAd, new { @class = "form-control" })
-        @*@Html.ValidationMessageFor(x => x.BolumAd)*@
-        <br />
-        <button class="btn btn-info">Bölümü Oluştur</button>
-    </div>
+    @Html.Partial("_CreateOrEdit")
 }

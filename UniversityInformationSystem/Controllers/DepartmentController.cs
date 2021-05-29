@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UniversityInformationSystem.Entities;
 using UniversityInformationSystem.Models;
 
 namespace UniversityInformationSystem.Controllers
@@ -12,19 +13,42 @@ namespace UniversityInformationSystem.Controllers
         public ActionResult Index()
         {
             var context = new Context();
-            var departmenties = context.Departments.ToList();
+            var departmenties = context.Departments.OrderByDescending(a => a.Faculty.FakulteAd).ToList();
             var model = new List<DepartmentModel>();
             foreach (var item in departmenties)
             {
                 var departmentName = item.BolumAd;
-                model.Add(new DepartmentModel { BolumAd = departmentName });
+                var facultyId= item.Faculty.FakulteID;
+                var faculty = context.Faculties.FirstOrDefault(a => a.FakulteID == facultyId);
+                model.Add(new DepartmentModel { BolumAd = departmentName, FakulteAd = faculty.FakulteAd  });
             }
             return View(model);
         }
+
         public ActionResult Create()
         {
             var context = new Context();
-            return View();
+            var model = new DepartmentModel();
+            var faculties = context.Faculties.ToList();
+            var kategoriler = new List<SelectListItem>();
+            foreach (var item in faculties)
+            {   
+                kategoriler.Add(new SelectListItem { Text = item.FakulteAd, Value = item.FakulteID.ToString() });
+            }
+            model.Faculties = new SelectList(kategoriler, "Value", "Text");
+            return View(model);
+        }
+        
+        [HttpPost]
+        public ActionResult Create(DepartmentModel model)
+        {
+            var context = new Context();
+            var department = new Department();
+            department.BolumAd = model.BolumAd;
+            department.FakulteID = model.FakulteId;
+            context.Departments.Add(department);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
@@ -32,7 +56,14 @@ namespace UniversityInformationSystem.Controllers
             var context = new Context();
             var department = context.Departments.FirstOrDefault(a => a.FakulteID == id);
             var model = new DepartmentModel();
-            model.BolumAd = department.BolumAd;
+            model.BolumAd = department.BolumAd; 
+            var faculties = context.Faculties.ToList();
+            var kategoriler = new List<SelectListItem>();
+            foreach (var item in faculties)
+            {
+                kategoriler.Add(new SelectListItem { Text = item.FakulteAd, Value = item.FakulteID.ToString() });
+            }
+            model.Faculties = new SelectList(kategoriler, "Value", "Key");
             return View(model);
         }
 

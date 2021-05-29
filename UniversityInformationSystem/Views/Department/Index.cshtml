@@ -12,6 +12,7 @@
         <tr>
             <th scope="col">Bölüm Adı</th>
             <th scope="col">Fakülte Adı</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +21,7 @@
         {
             <tr>
                 <td>@item.BolumAd</td>
-                @*<td>@item.FakulteAd</td>*@
+                <td>@item.FakulteAd</td>
                 <td style="text-align: right">
                     <a href="@Url.Action("Edit", "Department")" class="btn btn-success">Güncelle</a>
                     <a style="margin-left: 5px" href="@Url.Action("Delete", "Department")" class="btn btn-danger">Sil</a>
