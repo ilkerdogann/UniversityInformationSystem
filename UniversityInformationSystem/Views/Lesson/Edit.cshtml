@@ -1,7 +1,13 @@
-﻿
+﻿@model UniversityInformationSystem.Models.LessonModel
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
-
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Ders Güncelle</h1>
+    </div>
+</div>
+@using (Html.BeginForm("Edit", "Lesson", FormMethod.Post))
+{
+    @Html.Partial("_CreateOrEdit")
+}

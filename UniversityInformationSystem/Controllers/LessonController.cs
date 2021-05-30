@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UniversityInformationSystem.Entities;
 using UniversityInformationSystem.Models;
 
 namespace UniversityInformationSystem.Controllers
 {
     public class LessonController : Controller
     {
-        // GET: Lesson
+       
         public ActionResult Index()
         {
             var context = new Context();
@@ -17,15 +18,27 @@ namespace UniversityInformationSystem.Controllers
             var model = new List<LessonModel>();
             foreach (var item in lessons)
             {
+                var lessonName = item.DersAdi;
                 var lessonId = item.DersID;
-                //model.Add(new LessonModel { Id = lessonId});
+                model.Add(new LessonModel { DersAdi = lessonName, Id = lessonId });
             }
             return View(model);
         }
+
         public ActionResult Create()
         {
-            var context = new Context();
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(LessonModel model)
+        {
+            var context = new Context();
+            var lesson = new Lesson();
+            lesson.DersAdi = model.DersAdi;
+            context.Lessons.Add(lesson);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Edit(int id)
@@ -33,14 +46,27 @@ namespace UniversityInformationSystem.Controllers
             var context = new Context();
             var lesson = context.Lessons.FirstOrDefault(a => a.DersID == id);
             var model = new LessonModel();
-            //model.= lesson.DersID;
+            model.DersAdi = lesson.DersAdi;
             return View(model);
         }
 
-        public ActionResult Delete()
+        [HttpPost]
+        public ActionResult Edit(LessonModel model)
         {
             var context = new Context();
-            return View();
+            var lesson = context.Lessons.FirstOrDefault(a => a.DersID == model.Id);
+            lesson.DersAdi = model.DersAdi;
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var context = new Context();
+            var lesson = context.Lessons.FirstOrDefault(a => a.DersID == id);
+            context.Lessons.Remove(lesson);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,0 +1,10 @@
+﻿@model UniversityInformationSystem.Models.LessonModel
+
+<div class="form-group">
+    @Html.Label("Ders Adı")
+    @Html.TextBoxFor(x => x.DersAdi, new { @class = "form-control" })
+    <br />
+</div>
+<div class="form-group">
+    <button type="submit" class="btn btn-info">Kaydet</button>
+</div>
