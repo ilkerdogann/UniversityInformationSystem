@@ -2,15 +2,33 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<h1>Öğrenci Sorgulama Ekranı</h1>
 <br />
-@using (Html.BeginForm("Index", "Student", FormMethod.Post))
-{
-    <div class="form-group">
-        @Html.Label("Öğrenci Numarası")
-        @Html.TextBoxFor(x => x.OgrenciID)
-        <br />
-        <button class="btn btn-info">Öğrenciyi Bul</button>
-    </div>
-}
+<div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-left:1000px;">
+    <a href="@Url.Action("Create", "Student")" class="btn btn-info">Ekle</a>
+</div>
+
+<table class="table" style="width: 70%; margin-left: auto; margin-right: auto;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Öğrenci Adı</th>
+            <th scope="col">Öğrenci Soyadı</th>
+            <th scope="col">Öğrencinin Bölümü</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ad</td>
+                <td>@item.Soyad</td>
+                <td>@item.DepartmentName</td>
+                <td style="text-align: right">
+                    <a href="@Url.Action("Edit", "Student",  new { id = item.Id})" class="btn btn-success">Güncelle</a>
+                    <a style="margin-left: 5px" href="@Url.Action("Delete", "Student",  new { id = item.Id})" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

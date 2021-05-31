@@ -1,0 +1,16 @@
+﻿@model UniversityInformationSystem.Models.StudentModel
+
+<div class="form-group">
+    @Html.Label("Öğrenci Adı")
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+    @Html.Label("Öğrenci Soyadı")
+    @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
+    <br />
+    @Html.Label("Öğrenci Bölümü")
+    @Html.DropDownListFor(x => x.DepartmentId, Model.Departments, "Seçiniz", new { @class = "form-control form-select" })
+    <br />
+</div>
+<div class="form-group">
+    <button type="submit" class="btn btn-info">Kaydet</button>
+</div>
