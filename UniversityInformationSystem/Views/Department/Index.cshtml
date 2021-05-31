@@ -23,8 +23,8 @@
                 <td>@item.BolumAd</td>
                 <td>@item.FakulteAd</td>
                 <td style="text-align: right">
-                    <a href="@Url.Action("Edit", "Department")" class="btn btn-success">Güncelle</a>
-                    <a style="margin-left: 5px" href="@Url.Action("Delete", "Department")" class="btn btn-danger">Sil</a>
+                    <a href="@Url.Action("Edit", "Department", new { id = item.Id})" class="btn btn-success">Güncelle</a>
+                    <a style="margin-left: 5px" href="@Url.Action("Delete", "Department", new { id = item.Id})" class="btn btn-danger">Sil</a>
                 </td>
             </tr>
         }

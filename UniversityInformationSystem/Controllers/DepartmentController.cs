@@ -18,9 +18,10 @@ namespace UniversityInformationSystem.Controllers
             foreach (var item in departmenties)
             {
                 var departmentName = item.BolumAd;
+                var departmentId = item.BolumID;
                 var facultyId= item.Faculty.FakulteID;
                 var faculty = context.Faculties.FirstOrDefault(a => a.FakulteID == facultyId);
-                model.Add(new DepartmentModel { BolumAd = departmentName, FakulteAd = faculty.FakulteAd  });
+                model.Add(new DepartmentModel { BolumAd = departmentName, Id = departmentId, FakulteAd = faculty.FakulteAd  });
             }
             return View(model);
         }
@@ -67,10 +68,13 @@ namespace UniversityInformationSystem.Controllers
             return View(model);
         }
 
-        public ActionResult Delete()
+        public ActionResult Delete(int id)
         {
             var context = new Context();
-            return View();
+            var department = context.Departments.FirstOrDefault(a => a.BolumID == id);
+            context.Departments.Remove(department);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
