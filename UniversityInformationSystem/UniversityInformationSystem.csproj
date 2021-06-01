@@ -144,6 +144,7 @@
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\FacultyModel.cs" />
     <Compile Include="Models\LessonModel.cs" />
+    <Compile Include="Models\StudentCountModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -232,6 +233,10 @@
     <Content Include="Views\Student\Search.cshtml" />
     <Content Include="Views\Student\_Lessons.cshtml" />
     <Content Include="Views\Lesson\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Student\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Student\Create.cshtml" />
+    <Content Include="Views\Student\_StudentCount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

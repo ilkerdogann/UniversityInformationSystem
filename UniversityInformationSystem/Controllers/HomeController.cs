@@ -10,7 +10,6 @@ namespace UniversityInformationSystem.Controllers
     {
         public ActionResult Index()
         {
-            var context = new Context();
             return View();
         }
     }

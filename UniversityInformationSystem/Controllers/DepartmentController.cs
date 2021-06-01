@@ -55,7 +55,7 @@ namespace UniversityInformationSystem.Controllers
         public ActionResult Edit(int id)
         {
             var context = new Context();
-            var department = context.Departments.FirstOrDefault(a => a.FakulteID == id);
+            var department = context.Departments.FirstOrDefault(a => a.BolumID == id);
             var model = new DepartmentModel();
             model.BolumAd = department.BolumAd; 
             var faculties = context.Faculties.ToList();
@@ -64,8 +64,19 @@ namespace UniversityInformationSystem.Controllers
             {
                 kategoriler.Add(new SelectListItem { Text = item.FakulteAd, Value = item.FakulteID.ToString() });
             }
-            model.Faculties = new SelectList(kategoriler, "Value", "Key");
+            model.Faculties = new SelectList(kategoriler, "Value", "Text");
+            model.FakulteId = department.FakulteID;
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(DepartmentModel model)
+        {
+            var context = new Context();
+            var department = context.Departments.FirstOrDefault(a => a.BolumID == model.Id);
+            department.BolumAd = model.BolumAd;
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Delete(int id)
