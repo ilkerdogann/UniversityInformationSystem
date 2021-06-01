@@ -17,7 +17,7 @@ namespace UniversityInformationSystem.Entities
 
         [Key]
         [Column(Order = 3)]
-        public int Yil { get; set; }
+        public string Yil { get; set; }
         public string Yariyil { get; set; }
         public int Vize { get; set; }
         public int Final { get; set; }

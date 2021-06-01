@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using UniversityInformationSystem.Entities;
@@ -93,10 +94,16 @@ namespace UniversityInformationSystem.Controllers
 
         public ActionResult Search()
         {
+            var kategoriler = new List<SelectListItem>();
+            for (int i = 2000; i <= DateTime.Now.Year; i++)
+            {
+                kategoriler.Add(new SelectListItem { Text = $"{i}-{i + 1}", Value = $"{i}-{i + 1}" });
+            }
+            ViewBag.Years = new SelectList(kategoriler, "Value", "Text");
             return View();
         }
 
-        public ActionResult SearchLessons(int ogrenciNo)
+        public ActionResult SearchLessonsForStudentNumber(int ogrenciNo)
         {
             var context = new Context();
             var student = context.Students.FirstOrDefault(a => a.OgrenciNo == ogrenciNo);
@@ -113,6 +120,25 @@ namespace UniversityInformationSystem.Controllers
                 models.Add(model);
             }
             return PartialView("_Lessons", models);
+        }
+
+        public ActionResult SearchLessonsForYear(string year, string semester)
+        {
+            var context = new Context();
+            var models = new List<StudentCountModel>();
+            var studentLessons = context.StudentLessons.Where(a => a.Yil == year && a.Yariyil == semester).ToList();
+            var dersIdGroup = studentLessons.GroupBy(a => a.DersID);
+            foreach (var item in dersIdGroup)
+            {
+                var model = new StudentCountModel();
+                var lessonName = context.Lessons.FirstOrDefault(a => a.DersID == item.Key).DersAdi;
+                var studentCount = studentLessons.GroupBy(a => a.OgrenciNo, a => a.Lesson.DersID).Count(); 
+                model.DersAdi = lessonName;
+                model.OgrenciSayisi = studentCount;
+                models.Add(model);
+            }
+
+            return PartialView("_StudentCount", models);
         }
     }
 }

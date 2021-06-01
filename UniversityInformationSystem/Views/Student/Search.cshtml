@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Create";
+    var years = (SelectList)ViewBag.Years;
 }
 
 <div class="p-5 mb-4 bg-light rounded-3">
@@ -8,24 +9,45 @@
     </div>
 </div>
 
-    <div class="form-group">
-        @Html.Label("Öğrenci Numarası")
-        @Html.TextBox("ogrenciNo", "", new { id = "ogrenciNo" })
-    </div>
-
-    <div class="form-group" style="margin-top:25px;">
-        <button id="searchButton" class="btn btn-info">Öğrencinin Aldığı Dersleri Bul</button>
-    </div>
+<div class="form-group">
+    @Html.Label("Öğrenci Numarası")
+    @Html.TextBox("ogrenciNo", "", new { id = "ogrenciNo" })
+    <button id="searchButtonForStudentNumber" class="btn btn-info">Öğrencinin Aldığı Dersleri Bul</button>
+</div>
 
 <div id="studentLessons"></div>
+
+<div class="form-group" style="margin-top:25px">
+    @Html.Label("Akademik Yıl:")
+    @Html.DropDownList("year", years, "Seçiniz", new { id = "years" })
+    <label>Akademik Dönem:</label>
+    <select id="donem">
+        <option selected>Seçiniz</option>
+        <option value="Güz">Güz</option>
+        <option value="Bahar">Bahar</option>
+        <option value="Yaz">Yaz</option>
+    </select>
+    <button id="searchButtonForYear" class="btn btn-info">Öğrencinin Aldığı Dersleri Bul</button>
+</div>
+
+<div id="studentLessonsForYear"></div>
+
+
+
 <script>
 $(document).ready(function(){
-    $("#searchButton").click(function () {
-        debugger;
+    $("#searchButtonForStudentNumber").click(function () {
         var data = { ogrenciNo: $("#ogrenciNo").val() }
-        $.post("@Url.Action("SearchLessons", "Student")", data, function (data, status) {
-            $("#studentLessons").html(data);
+        $.post("@Url.Action("SearchLessonsForStudentNumber", "Student")", data, function (result) {
+            $("#studentLessons").html(result);
+        });
     });
-  });
+    $("#searchButtonForYear").click(function () {
+        debugger;
+        var data = { year: $('#years').val(), semester: $('#donem').val() }
+        $.post("@Url.Action("SearchLessonsForYear", "Student")", data, function (result) {
+            $("#studentLessonsForYear").html(result);
+        });
+    });
 });
 </script>
