@@ -1,0 +1,23 @@
+﻿@model  List<UniversityInformationSystem.Models.EnterNoteModel> 
+
+<table class="table" style="width: 70%; margin-left: auto; margin-right: auto;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Öğrenci Adı Soyadı</th>
+            <th scope="col">Öğrencinin Bölümü</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OgrenciAdi @item.OgrenciSoyadi</td>
+                <td>@item.OgrenciBolumu</td>
+                <td style="text-align: right">
+                    <a style="margin-left: 5px" href="@Url.Action("EnterNote", "StudentLesson", new { ogrNo = item.OgrenciNo, dersId = item.DersId, year = item.Yil })" class="btn btn-secondary">Not gir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

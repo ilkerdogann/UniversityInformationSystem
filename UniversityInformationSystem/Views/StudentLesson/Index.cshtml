@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Create";
+    var years = (SelectList)ViewBag.Years;
+}
+
+<div class="form-group">
+    @Html.Label("Öğrenci Numarası")
+    @Html.TextBox("ogrenciNo", "", new { id = "ogrenciNo" })
+</div>
+<div class="form-group" style="margin-top:25px">
+    @Html.Label("Akademik Yıl:")
+    @Html.DropDownList("year", years, "Seçiniz", new { id = "years" })
+    <label>Akademik Dönem:</label>
+    <select id="donem">
+        <option selected>Seçiniz</option>
+        <option value="Güz">Güz</option>
+        <option value="Bahar">Bahar</option>
+        <option value="Yaz">Yaz</option>
+    </select>
+</div>
+<div class="form-group" style="margin-top:25px">
+    <button id="searchButtonForStudentNumber" class="btn btn-info">Öğrenciyi Bul</button>
+</div>
+<div id="dersler"></div>
+<script>
+    $(document).ready(function(){
+        $("#searchButtonForStudentNumber").click(function () {
+            var ogrNo = $("#ogrenciNo").val();
+            var year = $("#years").val();
+            var donem = $("#donem").val();
+            var data = { year: year, semester: donem, ogrenciNo: ogrNo };
+            $.post("@Url.Action("GetLesson", "StudentLesson")", data, function (result) {
+                $("#dersler").html(result);
+            });
+        });
+    });
+</script>
+<br />
+<div class="form-group">
+    <a href="@Url.Action("AddLesson", "StudentLesson")" class="btn btn-dark">Öğrenciye Ders Ekle</a>
+</div>
+<br />
+<div class="form-group">
+    <a href="@Url.Action("Note", "StudentLesson")" class="btn btn-warning">Not Gir</a>
+</div>

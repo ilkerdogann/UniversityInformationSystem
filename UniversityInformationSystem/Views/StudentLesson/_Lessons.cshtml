@@ -1,0 +1,23 @@
+﻿@model  UniversityInformationSystem.Models.StudentLessonModel
+
+<div>
+    Adı Soyadı: @Model.OgrenciAd @Model.OgrenciSoyad, Bölümü: @Model.OgrenciBolum, Yıl: @Model.Yil, Dönem: @Model.Yariyil
+</div>
+<table class="table" style="width: 70%; margin-left: auto; margin-right: auto;">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Dersin Adı</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Lessons)
+        {
+            <tr>
+                <td>@item.DersAdi</td>
+                <td style="text-align: right">
+                    <a style="margin-left: 5px" href="@Url.Action("Delete", "StudentLesson", new { dersId = item.Id, year = Model.Yil, ogrNo = Model.Id })" class="btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

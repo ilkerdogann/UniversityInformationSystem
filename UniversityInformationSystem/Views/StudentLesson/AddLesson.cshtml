@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Create";
+    var years = (SelectList)ViewBag.Year;
+    var les = (SelectList)ViewBag.Lessons;
+}
+<form action="@Url.Action("AddLesson", "StudentLesson")" method="post">
+    <div class="form-group">
+        @Html.Label("Öğrenci No:")
+        <input type="text" id="ogrNo" name="ogrNo" />
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Ders Adı:")
+        @Html.DropDownList("dersId", les, "Seçiniz", new { id = "les" })
+    </div>
+    <br />
+    <div class="form-group">
+        @Html.Label("Akademik Yıl:")
+        @Html.DropDownList("year", years, "Seçiniz", new { id = "year" }) 
+        <label>Akademik Dönem:</label>
+        <select id="semester" name="semester">
+            <option selected>Seçiniz</option>
+            <option value="Güz">Güz</option>
+            <option value="Bahar">Bahar</option>
+            <option value="Yaz">Yaz</option>
+        </select>
+        <button type="submit" class="btn btn-info">Ders Ekle</button>
+    </div>
+</form>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Create";
+    var lessons = (SelectList)ViewBag.Lessons;
+}
+
+<div class="form-group" style="margin-top:25px">
+    @Html.Label("Ders:")
+    @Html.DropDownList("lesson", lessons, "Seçiniz", new { id = "lessons" })
+</div>
+<div id="ogrenciler"></div>
+<script>
+    $(document).ready(function () {
+        $("#lessons").change(function () {        
+            var data = { dersId: $("#lessons").val() };
+            $.post("@Url.Action("GetStudents", "StudentLesson")", data, function (result) {
+                $("#ogrenciler").html(result);
+            });
+        });
+    });
+</script>
