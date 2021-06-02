@@ -131,6 +131,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
+    <Compile Include="Controllers\StudentLessonController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Entities\Lesson.cs" />
@@ -144,7 +145,10 @@
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\FacultyModel.cs" />
     <Compile Include="Models\LessonModel.cs" />
+    <Compile Include="Models\EnterNoteModel.cs" />
     <Compile Include="Models\StudentCountModel.cs" />
+    <Compile Include="Models\NoteModel.cs" />
+    <Compile Include="Models\StudentLessonModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -237,6 +241,12 @@
     <Content Include="Views\Student\Edit.cshtml" />
     <Content Include="Views\Student\Create.cshtml" />
     <Content Include="Views\Student\_StudentCount.cshtml" />
+    <Content Include="Views\StudentLesson\Index.cshtml" />
+    <Content Include="Views\StudentLesson\_Lessons.cshtml" />
+    <Content Include="Views\StudentLesson\Note.cshtml" />
+    <Content Include="Views\StudentLesson\_Students.cshtml" />
+    <Content Include="Views\StudentLesson\EnterNote.cshtml" />
+    <Content Include="Views\StudentLesson\AddLesson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

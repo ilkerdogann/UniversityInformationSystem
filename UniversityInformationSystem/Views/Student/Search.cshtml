@@ -43,7 +43,6 @@ $(document).ready(function(){
         });
     });
     $("#searchButtonForYear").click(function () {
-        debugger;
         var data = { year: $('#years').val(), semester: $('#donem').val() }
         $.post("@Url.Action("SearchLessonsForYear", "Student")", data, function (result) {
             $("#studentLessonsForYear").html(result);
