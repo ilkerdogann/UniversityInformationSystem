@@ -4,6 +4,11 @@
     ViewBag.Title = "Create";
     var lessons = (SelectList)ViewBag.Lessons;
 }
+<div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Not Gir</h1>
+    </div>
+</div>
 @using (Html.BeginForm("EnterNote", "StudentLesson", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.DersId)
@@ -17,6 +22,7 @@
         @Html.LabelFor(m => m.Final)
         @Html.TextBoxFor(m => m.Final)
     </div>
+    <br />
     <button class="btn btn-success" type="submit">Kaydet</button>
 }
 
